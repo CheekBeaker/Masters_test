@@ -1,0 +1,55 @@
+<html>
+<head>
+	<style>
+		body {
+			text-align: center;
+		}
+		#json {
+			width: 60%;
+		}
+		#resWrap {
+			border: 1px solid #ccc;
+			padding: 5px;
+			width: 60%;
+			margin: 10px auto;
+		}
+	</style>
+</head>
+<body>
+<h1>test ex.</h1>
+<p>
+	<textarea id="json" rows="8"></textarea>
+</p>
+<button id="run">Run</button>
+
+<div id="resWrap">
+	<p>Result</p>
+	<div id="result"></div>
+</div>
+<script>
+	const exec = () => {
+		var result = 'No result, sorry :(';
+	  	var params = null;
+		var field = document.getElementById("json");
+	    try {
+	    	params = JSON.parse(field.value);
+			result = JSON.stringify(params);
+			//TODO: process json (params) as needed in task
+		}
+	    catch (error) {
+	      if (error instanceof SyntaxError) {
+	        alert("There was a syntax error. Please correct it and try again: " + error.message);
+	      }
+	      else {
+	        throw error;
+	      }
+	    }
+
+	   console.log(result);
+	   document.getElementById("result").innerHTML = result;
+	}
+
+	document.getElementById("run").onclick = exec;
+	</script>
+</body>
+</html>
