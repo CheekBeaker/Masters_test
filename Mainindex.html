@@ -1,0 +1,142 @@
+<html><head>
+	<style>
+		body {
+			text-align: center;
+		}
+		#json {
+			width: 60%;
+		}
+		#resWrap {
+			border: 1px solid #ccc;
+			padding: 5px;
+			width: 60%;
+			margin: 10px auto;
+		}
+	</style>
+</head>
+<body>
+<h1>test ex.</h1>
+<p>
+	<textarea id="json" rows="8"></textarea>
+</p>
+<button id="run">Run</button>
+
+<div id="resWrap">
+	<p>Result</p>
+	<div id="result">No result, sorry :(</div>
+</div>
+<script>
+	const exec = () => {
+		var result = 'No result, sorry :(';
+	  	var params = null;
+		var field = document.getElementById("json");
+	    try {
+	    	params = JSON.parse(field.value);
+			result = "Accepted. Check the console for details."
+			//= JSON.stringify(params);
+			//TODO: process json (params) as needed in task
+			console.clear();
+function masters() {
+		//printing
+	var watermelonQuantity = 0, appleWeight = 0;
+			for (let i = 0; i < params.length; i++)	{
+					if (params[i].item === "watermelon") {
+								watermelonQuantity += params[i].quantity;
+					} else if(params[i].item === "apple") {
+								appleWeight += params[i].weight;
+					}
+			}
+			console.log("Watermelons: "+ watermelonQuantity);
+			console.log("Apple weight: "+ appleWeight);
+			//sorting..
+
+			function compareItem(a, b) {
+	  const itemA = a.item;
+	  const itemB = b.item;
+
+	  let comparison = 0;
+	  if (itemA > itemB) {
+	    comparison = 1;
+	  } else if (itemA < itemB) {
+	    comparison = -1;
+	  }
+	  return comparison;
+	}
+
+	params.sort(compareItem);
+	console.log("Sorted by item:");
+	console.log(params);
+
+/* What does "Sort by cost of Record" mean? pricePerItem/pricePerKilo? Both? Neither?
+	function compareByCost(a, b) {
+const itemA = a.pricePerItem;
+const itemB = b.pricePerKilo;
+
+let comparison = 0;
+if (itemA > itemB) {
+	comparison = 1;
+} else if (itemA < itemB) {
+	comparison = -1;
+}
+return comparison;
+}
+
+params.sort(compareByCost);
+*/
+
+var leastOrangePrice = "", cheapestOrangeType = "";
+for (let i = 0; i < params.length; i++)	{
+		if (params[i].item === "orange") {
+					if(leastOrangePrice < params[i].pricePerKilo){
+						cheapestOrangeType = params[i].type;
+					} continue
+				}
+			}
+			console.log("The cheapest orange variety is: "+ cheapestOrangeType);
+
+	// An "Item" of Pineapples does not in fact cost the same as a "Kilo" of Apples!
+	// Literally "comparing oranges to apples".
+	var appleCost = 0, orangeCost = 0, pineappleCost = 0, watermelonCost = 0;
+		for (let i = 0; i < params.length; i++)	{
+			switch (params[i].item) {
+				case "apple":
+					appleCost += parseInt(params[i].pricePerKilo[1]);
+					continue;
+				case "orange":
+					orangeCost += parseInt(params[i].pricePerKilo[1]);
+					continue;
+				case "pineapple":
+					pineappleCost += parseInt(params[i].pricePerItem[1]);
+					continue;
+				case "watermelon":
+					watermelonCost += parseInt(params[i].pricePerItem[1]);
+					continue;
+			}
+
+		}
+console.log("The price for all apples is "+appleCost);
+console.log("The price for all oranges is "+orangeCost);
+console.log("The price for all pineapples is "+pineappleCost);
+console.log("The price for all watermelons is "+watermelonCost);
+		}
+	// TODO: Clean every chunk of code into proper functions
+	// TODO: Make a proper .node implementation
+masters();
+}
+		//Courteus error work
+	    catch (error) {
+	      if (error instanceof SyntaxError) {
+	        alert("There was a syntax error. Please correct it and try again: " + error.message);
+	      }
+	      else {
+	        throw error;
+	      }
+	    }
+
+	   document.getElementById("result").innerHTML = result;
+	}
+
+	document.getElementById("run").onclick = exec;
+	</script>
+
+</body></html>
